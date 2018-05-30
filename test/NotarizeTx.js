@@ -30,26 +30,36 @@ contract('NotarizeTx', addresses => {
     it('should revert if tx.id is different than id', async () => {
       try {
         await instance.updateStatus("prueba", fakeId, hash, { from: node})
+        assert.fail()
       }
       catch(error) {
-        assert.ifError(error)
+        assert(error.toString().includes('revert'), error.toString())
       }
     });
 
     it('should revert if sender is different than tx.buyer or BSG_NODE', async () => {
       try {
         await instance.updateStatus("prueba", id, hash,{from: fakeSender})
+        assert.fail()
       }
       catch(error) {
-        assert.ifError(error)
+        assert(error.toString().includes('revert'), error.toString())
       }
     });
     it('should update status and raise NotaryEvt', async () => {
       try {
         await instance.updateStatus("prueba", id, hash, { from: node})
-    }
+        instance.NotaryEvt({}, { fromBlock: 0, toBlock: 'latest' }).get((error, res) => {
+          if (error){
+            console.log('Error in NotaryEvt event handler: ' + error)
+          }
+          else{
+            assert(res)
+          }
+        });
+      }
       catch(error) {
-        assert.notExists(error)
+        assert(false,"The method should not fail")
       }
     });
   });
@@ -59,27 +69,37 @@ contract('NotarizeTx', addresses => {
     it('should revert if _tx.id is different than _id', async () => {
       try {
         await instance.updateShipping("prueba", fakeId, hash, { from: node})
+        assert.fail()
       }
       catch(error) {
-        assert.ifError(error)
+        assert(error.toString().includes('revert'), error.toString())
       }
     });
 
     it('should revert if sender is different than tx.buyer or BSG_NODE', async () => {
       try {
         await instance.updateShipping("prueba", id, hash,{from: fakeSender})
+        assert.fail()
     }
       catch(error) {
-        assert.ifError(error)
+        assert(error.toString().includes('revert'), error.toString())
       }
     });
 
     it('should update shipping and raise NotaryEvt', async () => {
       try {
         await instance.updateShipping("prueba", id, hash, { from: node})
+        instance.NotaryEvt({}, { fromBlock: 0, toBlock: 'latest' }).get((error, res) => {
+          if (error){
+            console.log('Error in NotaryEvt event handler: ' + error)
+          }
+          else{
+            assert(res)
+          }
+        });
     }
       catch(error) {
-        assert.notExists(error)
+        assert(false,"The method should not fail")
       }
     });
   });
