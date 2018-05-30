@@ -49,7 +49,7 @@ contract('NotarizeTx', addresses => {
     it('should update status and raise NotaryEvt', async () => {
       try {
         await instance.updateStatus("prueba", id, hash, { from: node})
-        instance.NotaryEvt({}, { fromBlock: 0, toBlock: 'latest' }).get((error, res) => {
+        instance.NotaryEvt().get((error, res) => {
           if (error){
             assert(false,"The method should not fail")
           }
@@ -89,7 +89,7 @@ contract('NotarizeTx', addresses => {
     it('should update shipping and raise NotaryEvt', async () => {
       try {
         await instance.updateShipping("prueba", id, hash, { from: node})
-        instance.NotaryEvt({}, { fromBlock: 0, toBlock: 'latest' }).get((error, res) => {
+        instance.NotaryEvt().get((error, res) => {
           if (error){
             assert(false,"The method should not fail")
           }
