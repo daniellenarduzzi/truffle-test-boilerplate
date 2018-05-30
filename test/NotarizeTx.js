@@ -28,29 +28,26 @@ contract('NotarizeTx', addresses => {
     it('should revert if tx.id is different than id', async () => {
       try {
         await instance.methods.updateStatus("prueba", fakeId, hash, { from: node})
-        assert(false, 'updateStatus: It should have failed because fakeId is not equal to id.')
       }
       catch(error) {
-        assert(error.message.includes("revert"), 'updateStatus: fakeId is not equal to id, so method returns revert error')
+        assert.ifError(error)
       }
     });
 
     it('should revert if sender is different than tx.buyer or BSG_NODE', async () => {
       try {
         await instance.methods.updateStatus("prueba", id, hash,{from: fakeSender})
-        assert(false, 'updateStatus: It should have failed because fakeSender is different than tx.buyer or BSG_NODE.')
       }
       catch(error) {
-        assert(error.message.includes("revert"), 'updateStatus: fakeSender is different than tx.buyer or BSG_NODE, so method returns revert error')
+        assert.ifError(error)
       }
     });
     it('should update status and raise NotaryEvt', async () => {
       try {
         await instance.methods.updateStatus("prueba", id, hash, { from: node})
-        assert(true , 'updateStatus: updated, all conditions acomplished.')
-      }
+    }
       catch(error) {
-        should.not.exist(err)
+        assert.notExists(error)
       }
     });
   });
@@ -60,30 +57,27 @@ contract('NotarizeTx', addresses => {
     it('should revert if _tx.id is different than _id', async () => {
       try {
         await instance.methods.updateShipping("prueba", fakeId, hash, { from: node})
-        assert(false, 'updateShipping: It should have failed because fakeId is not equal to id.')
       }
       catch(error) {
-        assert(error.message.includes("revert"), 'updateShipping: fakeId is not equal to id, so method returns revert error')
+        assert.ifError(error)
       }
     });
 
     it('should revert if sender is different than tx.buyer or BSG_NODE', async () => {
       try {
         await instance.methods.updateShipping("prueba", id, hash,{from: fakeSender})
-        assert(false, 'updateShipping: It should have failed because fakeSender is different than tx.buyer or BSG_NODE.')
-      }
+    }
       catch(error) {
-        assert(error.message.includes("revert"), 'updateShipping: fakeSender is different than tx.buyer or BSG_NODE, so method returns revert error')
+        assert.ifError(error)
       }
     });
 
     it('should update shipping and raise NotaryEvt', async () => {
       try {
         await instance.methods.updateShipping("prueba", id, hash, { from: node})
-        assert(true , 'updateShipping: updated, all conditions acomplished.')
-      }
+    }
       catch(error) {
-        should.not.exist(err)
+        assert.notExists(error)
       }
     });
   });
