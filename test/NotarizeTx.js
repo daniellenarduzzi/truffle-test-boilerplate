@@ -51,7 +51,7 @@ contract('NotarizeTx', addresses => {
         await instance.updateStatus("prueba", id, hash, { from: node})
         instance.NotaryEvt({}, { fromBlock: 0, toBlock: 'latest' }).get((error, res) => {
           if (error){
-            console.log('Error in NotaryEvt event handler: ' + error)
+            assert(false,"The method should not fail")
           }
           else{
             assert(res)
@@ -91,7 +91,7 @@ contract('NotarizeTx', addresses => {
         await instance.updateShipping("prueba", id, hash, { from: node})
         instance.NotaryEvt({}, { fromBlock: 0, toBlock: 'latest' }).get((error, res) => {
           if (error){
-            console.log('Error in NotaryEvt event handler: ' + error)
+            assert(false,"The method should not fail")
           }
           else{
             assert(res)
