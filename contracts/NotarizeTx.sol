@@ -42,7 +42,7 @@ contract NotarizeTx {
   *
    */
     function updateStatus(string _status, bytes32 _hash, bytes32 _id) public {
-        require (_id != _tx.id && (msg.sender == _tx.buyer || msg.sender == BSG_NODE));
+        require (_id == _tx.id && (msg.sender == _tx.buyer || msg.sender == BSG_NODE));
         _tx.status = _status;
         _tx.hash = _hash;
         proofs[_hash] = _id;
@@ -52,7 +52,7 @@ contract NotarizeTx {
     *
      */
     function updateShipping(string _shipping, bytes32 _hash, bytes32 _id) public {
-        require(_id != _tx.id && (msg.sender == _tx.buyer || msg.sender == BSG_NODE));
+        require(_id == _tx.id && (msg.sender == _tx.buyer || msg.sender == BSG_NODE));
         _tx.status = _shipping;
         _tx.hash = _hash;
         proofs[_hash] = _tx.id;

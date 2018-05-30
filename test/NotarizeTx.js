@@ -1,5 +1,7 @@
-const NotarizeTx = artifacts.require('NotarizeTx');
 
+const NotarizeTx = artifacts.require('NotarizeTx');
+// const assert = require('chai')
+//     .use(require('chai-as-promised'))
 contract('NotarizeTx', addresses => {
 
   const node = addresses[0]
@@ -13,9 +15,9 @@ contract('NotarizeTx', addresses => {
   const shipping = "shipping"
   const fakeId = "0xcbf2177c74847d03eed704bc022c587f1153ba83"
   const fakeSender = addresses[3]
-
+  var instance
   beforeEach(async() => {
-  const instance = (await NotarizeTx.new(buyer, seller, id, date, value, hash, status, shipping, {from: node, gasLimit:100000000000000})).contract;
+  instance = (await NotarizeTx.new( buyer, seller, id, date, value, hash, status, shipping,{from: node, gasLimit:100000000000000}));
 });
 
   describe('NotarizeTx', () => {
@@ -27,7 +29,7 @@ contract('NotarizeTx', addresses => {
 
     it('should revert if tx.id is different than id', async () => {
       try {
-        await instance.methods.updateStatus("prueba", fakeId, hash, { from: node})
+        await instance.updateStatus("prueba", fakeId, hash, { from: node})
       }
       catch(error) {
         assert.ifError(error)
@@ -36,7 +38,7 @@ contract('NotarizeTx', addresses => {
 
     it('should revert if sender is different than tx.buyer or BSG_NODE', async () => {
       try {
-        await instance.methods.updateStatus("prueba", id, hash,{from: fakeSender})
+        await instance.updateStatus("prueba", id, hash,{from: fakeSender})
       }
       catch(error) {
         assert.ifError(error)
@@ -44,7 +46,7 @@ contract('NotarizeTx', addresses => {
     });
     it('should update status and raise NotaryEvt', async () => {
       try {
-        await instance.methods.updateStatus("prueba", id, hash, { from: node})
+        await instance.updateStatus("prueba", id, hash, { from: node})
     }
       catch(error) {
         assert.notExists(error)
@@ -56,7 +58,7 @@ contract('NotarizeTx', addresses => {
 
     it('should revert if _tx.id is different than _id', async () => {
       try {
-        await instance.methods.updateShipping("prueba", fakeId, hash, { from: node})
+        await instance.updateShipping("prueba", fakeId, hash, { from: node})
       }
       catch(error) {
         assert.ifError(error)
@@ -65,7 +67,7 @@ contract('NotarizeTx', addresses => {
 
     it('should revert if sender is different than tx.buyer or BSG_NODE', async () => {
       try {
-        await instance.methods.updateShipping("prueba", id, hash,{from: fakeSender})
+        await instance.updateShipping("prueba", id, hash,{from: fakeSender})
     }
       catch(error) {
         assert.ifError(error)
@@ -74,7 +76,7 @@ contract('NotarizeTx', addresses => {
 
     it('should update shipping and raise NotaryEvt', async () => {
       try {
-        await instance.methods.updateShipping("prueba", id, hash, { from: node})
+        await instance.updateShipping("prueba", id, hash, { from: node})
     }
       catch(error) {
         assert.notExists(error)
