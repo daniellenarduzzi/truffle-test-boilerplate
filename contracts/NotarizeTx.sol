@@ -9,17 +9,18 @@ contract NotarizeTx {
     mapping (bytes32 => bytes32) private proofs;
     address public BSG_NODE;
     struct Tx {
-        address buyer;
-        address seller;
-        bytes32 id;
-        string date;
-        uint value;
-        bytes32 hash;
-        string status;
-        string shipping;
+        address  buyer;
+        address  seller;
+        bytes32  id;
+        string  date;
+        uint  value;
+        bytes32  hash;
+        string  status;
+        string  shipping;
     }
 
-    Tx _tx;
+    Tx public _tx;
+
     event NotaryEvt(bytes32 _hash, bytes32 _id);
 
   /*

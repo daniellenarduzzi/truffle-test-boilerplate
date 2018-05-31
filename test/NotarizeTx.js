@@ -7,13 +7,13 @@ contract('NotarizeTx', addresses => {
   const node = addresses[0]
   const buyer = addresses[1]
   const seller = addresses[2]
-  const id =  "0xdcfcb5694135cb4cd6db40875d54521dfa60a3a5"
+  const id =  "785334f82ff9aea19b4d80bc51bc1b039f1fa91d3fda69c3544e50427a92876b"
   const date = "2/4/18"
   const value = 1
-  const hash =  "0x637c728ec66f988da224a17a1a9f617ed4bf26aa"
+  const hash =  "0xa06d8c92805e40b767afa80b81b0bdabbea6d10af016a1dd121bc5c6651623a1"
   const status = "purchased"
   const shipping = "shipping"
-  const fakeId = "0xcbf2177c74847d03eed704bc022c587f1153ba83"
+  const fakeId = "0xb67465b5835337afa0829f5c1f5047278744b57fdccdd56aba21a58eba34e858"
   const fakeSender = addresses[3]
   var instance
   beforeEach(async() => {
@@ -22,7 +22,22 @@ contract('NotarizeTx', addresses => {
 
   describe('NotarizeTx', () => {
 
-    it('should set local variables correctly', async () => {});
+    it('should set local variables correctly', async () => {
+      // try {
+      //   let tx = await instance._tx()
+      //   console.log(tx)
+      //   assert.equal(buyer, tx[0])
+      //   assert.equal(seller, tx[1])
+      //   // assert.equal(, tx[0])
+      //   // assert.equal(buyer, tx[0])
+      //   // assert.equal(buyer, tx[0])
+      //   // assert.equal(buyer, tx[0])
+      //
+      // }
+      // catch(error) {
+      //   assert(false,"The method should not fail")
+      // }
+    });
   });
 
   describe('updateStatus', () => {
