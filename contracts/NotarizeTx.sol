@@ -13,6 +13,7 @@ contract NotarizeTx {
         address seller;
         bytes32 id;
         string date;
+        uint vv;
         uint value;
         bytes32 hash;
         string status;
