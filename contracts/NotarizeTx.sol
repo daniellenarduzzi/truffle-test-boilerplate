@@ -19,6 +19,7 @@ contract NotarizeTx {
         string  shipping;
     }
 
+<<<<<<< HEAD
     Tx _tx;
 
     function getTx() public view returns (address,address,bytes32,string,uint,
@@ -27,6 +28,9 @@ contract NotarizeTx {
         return (_tx.buyer, _tx.seller, _tx.id, _tx.date, _tx.value, _tx.hash,
           _tx.status, _tx.shipping);
     }
+=======
+    Tx public _tx;
+>>>>>>> dae068b9f5dba095a137aff61d8542ec782c6435
 
     event NotaryEvt(bytes32 _hash, bytes32 _id);
 

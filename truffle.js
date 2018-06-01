@@ -10,8 +10,13 @@ module.exports = {
       host: "localhost",
       port: 8545,
       network_id: "*",
+<<<<<<< HEAD
       gasLimit:403861,
       gas: 403861,
+=======
+      gasLimit:6750000,
+      gas: 6750000,
+>>>>>>> dae068b9f5dba095a137aff61d8542ec782c6435
     },
     coverage: {
       host: "localhost",
