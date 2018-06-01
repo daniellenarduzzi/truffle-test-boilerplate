@@ -21,9 +21,11 @@ contract NotarizeTx {
 
     Tx _tx;
 
-    function getTx() public view returns (address,address,bytes32,string,uint,bytes32,string,string){
+    function getTx() public view returns (address,address,bytes32,string,uint,
+      bytes32,string,string){
 
-        return (_tx.buyer, _tx.seller, _tx.id, _tx.date, _tx.value, _tx.hash, _tx.status, _tx.shipping);
+        return (_tx.buyer, _tx.seller, _tx.id, _tx.date, _tx.value, _tx.hash,
+          _tx.status, _tx.shipping);
     }
 
     event NotaryEvt(bytes32 _hash, bytes32 _id);
@@ -31,7 +33,8 @@ contract NotarizeTx {
   /*
     Contract constructor takes _user as client Ethereum address
    */
-    constructor(address _buyer, address _seller, bytes32 _id, string _date, uint _value, bytes32 _hash, string _status, string _shipping) public {
+    constructor(address _buyer, address _seller, bytes32 _id, string _date,
+       uint _value, bytes32 _hash, string _status, string _shipping) public {
         _tx.buyer = _buyer;
         _tx.seller = _seller;
         _tx.id = _id;
